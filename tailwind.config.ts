@@ -1,5 +1,6 @@
 const colors = require("tailwindcss/colors");
 const { fontFamily } = require("tailwindcss/defaultTheme");
+import { figmaColorsThemeObject } from "@/figma/util-color";
 import type { Config } from "tailwindcss";
 
 const config = {
@@ -21,6 +22,9 @@ const config = {
     },
     extend: {
       colors: {
+        // Figma vars
+
+        // Shad
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
@@ -58,16 +62,17 @@ const config = {
         bg: colors.white,
         fg: colors.black,
         interactive: {
-          DEFAULT: colors.blue[500],
-          bg: colors.blue[500],
+          // DEFAULT: colors.blue[500],
+          DEFAULT: "var(--acBlue-700)",
+          bg: "var(--acBlue-700)",
           fg: colors.white,
-          bgHover: colors.blue[600],
+          bgHover: "var(--acBlue-800)",
         },
         danger: {
-          DEFAULT: colors.red[500],
-          bg: colors.red[500],
+          DEFAULT: "var(--strawberry-700)",
+          bg: "var(--strawberry-700)",
           fg: colors.white,
-          bgHover: colors.red[600],
+          bgHover: "var(--strawberry-800)",
         },
       },
       fontFamily: {

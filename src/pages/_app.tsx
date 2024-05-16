@@ -1,3 +1,4 @@
+import "@/styles/figma-vars.css";
 import "@/styles/globals.css";
 import type { AppProps } from "next/app";
 import { Inter as FontSans } from "next/font/google";
