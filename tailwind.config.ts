@@ -1,3 +1,4 @@
+const colors = require("tailwindcss/colors");
 const { fontFamily } = require("tailwindcss/defaultTheme");
 import type { Config } from "tailwindcss";
 
@@ -52,6 +53,21 @@ const config = {
         card: {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
+        },
+        // all new
+        bg: colors.white,
+        fg: colors.black,
+        interactive: {
+          DEFAULT: colors.blue[500],
+          bg: colors.blue[500],
+          fg: colors.white,
+          bgHover: colors.blue[600],
+        },
+        danger: {
+          DEFAULT: colors.red[500],
+          bg: colors.red[500],
+          fg: colors.white,
+          bgHover: colors.red[600],
         },
       },
       fontFamily: {
