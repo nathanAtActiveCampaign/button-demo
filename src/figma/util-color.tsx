@@ -1,18 +1,14 @@
-import { rawTokens } from "./tokens-export-raw";
+import { rawVariables } from "./figma-export-raw";
 
-type rgbaKey = {
+export type rgbaKey = {
   r: number;
   g: number;
   b: number;
   a: number;
 };
 
-{
-  /* <figmaModes = string> */
-}
-
-type figmaValueByMode = Record<string, rgbaKey>;
-type figmaResolvedValueByMode = Record<
+export type figmaValueByMode = Record<string, rgbaKey>;
+export type figmaResolvedValueByMode = Record<
   string,
   {
     alias: string | null;
@@ -20,7 +16,7 @@ type figmaResolvedValueByMode = Record<
   }
 >;
 
-type figmaVariableShape = {
+export type figmaVariableShape = {
   id: string;
   name: string;
   description: string;
@@ -32,7 +28,7 @@ type figmaVariableShape = {
   codeSyntax: {};
 };
 
-type figmaTokenExport = {
+export type figmaTokenExport = {
   id: string;
   name: string;
   modes: Record<string, string>;
@@ -40,7 +36,7 @@ type figmaTokenExport = {
   variables: figmaVariableShape[];
 };
 
-const convertChannelValue = (value: number) => value * 255;
+const convertChannelValue = (value: number) => Math.round(value * 255);
 
 const convertRgbaKeyToCssSyntax = ({ r, g, b, a }: rgbaKey) => {
   const red = convertChannelValue(r);
@@ -76,12 +72,20 @@ interface NestedObject {
 }
 
 // Checks if var is a color
-const isColorVariable = (variableObject: figmaVariableShape) =>
+export const isColorVariable = (variableObject: figmaVariableShape) =>
   variableObject.type === "COLOR";
 
 // Cleanup variable from figma
 // Setup color key for tailwind
-const transformFigmaVariable = (variable: figmaVariableShape, i: number) => {
+type modifiedFigmaVar = Pick<
+  figmaVariableShape,
+  "id" | "name" | "type" | "valuesByMode"
+> & { rgbaString: string };
+
+export const transformFigmaVariable = (
+  variable: figmaVariableShape,
+  i: number
+): modifiedFigmaVar => {
   const { id, name, type, valuesByMode } = variable;
 
   // Compute RGBA value
@@ -125,6 +129,10 @@ export function rawColorsToTheme(data: figmaTokenExport) {
 
       // Walk each part
       parts.forEach((part, index) => {
+        part = part.toLowerCase();
+        if (part === "ac blue") {
+          part = "acBlue";
+        }
         // if this part doesnt exist at the current level, initialize an empty object
         if (!currentLevel[part]) {
           currentLevel[part] = {};
@@ -141,5 +149,46 @@ export function rawColorsToTheme(data: figmaTokenExport) {
   return result;
 }
 
-export const tokens = rawColorsToTheme(rawTokens);
-console.log("tokens");
+export const figmaColorsThemeObject = rawColorsToTheme(rawVariables);
+
+export function rawColorsToNamedKeys(data: figmaTokenExport) {
+  const result: Record<string, any> = {};
+
+  data.variables
+    // Remove non-color vars
+    .filter(isColorVariable)
+    // Pick req'd keys
+    .map(transformFigmaVariable)
+    // Create named keys w/ color value
+    .forEach((figVar) => {
+      const { name, rgbaString: color } = figVar;
+      // Contstruct name
+      let newKey;
+      newKey = name
+        .toLowerCase()
+        .replace("/", "-")
+        // Manual overrides
+        .replace("ac blue", "acBlue")
+        .replace("midnight-white", "white");
+      // Assingn color value
+      result[newKey] = color;
+    });
+
+  return result;
+}
+
+export const figmaColorsFlatObject = rawColorsToNamedKeys(rawVariables);
+
+export function objectToCSSVariables(obj, prefix = "") {
+  let css = "";
+  for (let key in obj) {
+    if (obj.hasOwnProperty(key)) {
+      const varName = `--${prefix}${key}`;
+      const varValue = obj[key];
+      css += `${varName}: ${varValue};\n`;
+    }
+  }
+  return css;
+}
+
+export const figmaColorsCssVars = objectToCSSVariables(figmaColorsFlatObject);

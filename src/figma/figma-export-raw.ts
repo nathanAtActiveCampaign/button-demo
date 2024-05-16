@@ -1,4 +1,4 @@
-export const rawTokens = {
+export const rawVariables = {
   id: "VariableCollectionId:27468:210303",
   name: "_NEW Color Primitives",
   modes: {

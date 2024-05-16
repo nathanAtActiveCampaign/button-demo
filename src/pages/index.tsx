@@ -1,7 +1,11 @@
 import Image from "next/image";
 import { Inter } from "next/font/google";
 import { Button } from "@/components/ui/button";
-import { tokens } from "@/figma/util-color";
+import {
+  figmaColorsFlatObject,
+  figmaColorsCssVars,
+  figmaColorsThemeObject,
+} from "@/figma/util-color";
 
 // tokens
 // round rgba
@@ -15,7 +19,8 @@ const inter = Inter({ subsets: ["latin"] });
 // add colors
 
 export default function Home() {
-  console.log("tokens", tokens);
+  console.log("vars", figmaColorsFlatObject);
+  console.log("css", figmaColorsCssVars);
   return (
     <main
       className={`flex min-h-screen flex-col items-center justify-between p-24 ${inter.className}`}
