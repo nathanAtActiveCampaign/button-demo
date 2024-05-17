@@ -50,7 +50,7 @@ const ghostDestructive = `
 `;
 
 // Size
-const sm = "h-9 px-2 py-1";
+const sm = "h-7 px-2 py-1";
 const md = "h-9 px-3 py-2"; // do we need pad?
 
 const buttonVariants = cva([block, typography, focus, disabled, misc], {

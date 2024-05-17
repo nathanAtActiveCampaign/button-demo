@@ -14,10 +14,11 @@ import { Chip, flavors } from "@/components/ui/chip";
 
 const inter = Inter({ subsets: ["latin"] });
 
-// layout styles (hover, focus)
-// layout variants
-// layout sizes
-// add colors
+// layout styles (hover, focus) ✅
+// layout variants ✅
+// layout sizes ✅
+// add colors ✅
+// add typography styles
 
 // add storybook
 // picture of buttons
@@ -53,6 +54,20 @@ export default function Home() {
         <div className="flex flex-row gap-3">
           {buttonVariants.map((x, i) => (
             <Button key={i} variant={x} disabled>
+              Button
+            </Button>
+          ))}
+        </div>
+        <div className="flex flex-row gap-5 pl-1">
+          {buttonVariants.map((x, i) => (
+            <Button key={i} variant={x} size="sm">
+              Button
+            </Button>
+          ))}
+        </div>
+        <div className="flex flex-row gap-5 pl-1">
+          {buttonVariants.map((x, i) => (
+            <Button key={i} variant={x} size="sm" disabled>
               Button
             </Button>
           ))}
