@@ -18,6 +18,12 @@ const inter = Inter({ subsets: ["latin"] });
 // layout sizes
 // add colors
 
+// add storybook
+// picture of buttons
+// picture of colors
+// build chips
+// picture of chips
+
 export default function Home() {
   console.log("vars", figmaColorsFlatObject);
   console.log("css", figmaColorsCssVars);
@@ -27,13 +33,29 @@ export default function Home() {
     >
       <div className="flex flex-col gap-3">
         {/* layout styles */}
-        <div className="flex flex-col gap-3">
-          <Button variant="fill">Fill</Button>
-          <Button variant="destructive">Destructive</Button>
-          <Button variant="outline">Outline</Button>
-          <Button variant="secondary">Secondary</Button>
-          <Button variant="ghost">Ghost</Button>
-          <Button variant="link">Link</Button>
+        <div className="flex flex-row gap-3">
+          <Button variant="fill">Button</Button>
+          <Button variant="fill-destructive">Button</Button>
+          <Button variant="outline">Button</Button>
+          <Button variant="ghost">Button</Button>
+          <Button variant="ghost-destructive">Button</Button>
+        </div>
+        <div className="flex flex-row gap-3">
+          <Button disabled variant="fill">
+            Button
+          </Button>
+          <Button disabled variant="fill-destructive">
+            Button
+          </Button>
+          <Button disabled variant="outline">
+            Button
+          </Button>
+          <Button disabled variant="ghost">
+            Button
+          </Button>
+          <Button disabled variant="ghost-destructive">
+            Button
+          </Button>
         </div>
         {/* <div className="flex gap-3">
           <Button>Fill</Button>
