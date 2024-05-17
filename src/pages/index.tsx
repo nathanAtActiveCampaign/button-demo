@@ -7,6 +7,7 @@ import {
   figmaColorsThemeObject,
 } from "@/figma/util-color";
 import { Chip, flavors } from "@/components/ui/chip";
+import { Header, Text, headerVariants } from "@/components/ui/typography";
 
 // tokens
 // round rgba
@@ -38,12 +39,29 @@ export default function Home() {
     | "ghost-destructive"
   )[] = ["fill", "fill-destructive", "outline", "ghost", "ghost-destructive"];
 
+  const foo = headerVariants({ size: "sm" });
+  console.log("foo styles", foo);
+
   return (
     <main
       className={`flex min-h-screen flex-col items-center justify-between p-24 ${inter.className}`}
     >
       <div className="flex flex-col gap-3">
         {/* layout styles */}
+        <Text size="sm">body: the quick fox jumped over the lazy dog.</Text>
+        <Text size="md">body: the quick fox jumped over the lazy dog.</Text>
+        <Header size="sm">
+          HEADER: the quick fox jumped over the lazy dog.
+        </Header>
+        <Header size="md">
+          HEADER: the quick fox jumped over the lazy dog.
+        </Header>
+        <Header size="lg">
+          HEADER: the quick fox jumped over the lazy dog.
+        </Header>
+        <Header size="xl">
+          HEADER: the quick fox jumped over the lazy dog.
+        </Header>
         <div className="flex flex-row gap-3">
           {buttonVariants.map((x, i) => (
             <Button key={i} variant={x}>

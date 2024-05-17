@@ -3,9 +3,10 @@ import { Slot } from "@radix-ui/react-slot";
 import { cva, type VariantProps } from "class-variance-authority";
 
 import { cn } from "@/lib/utils";
+import { headerVariants } from "./typography";
 
 // Shared
-const typography = "whitespace-nowrap text-xs font-medium";
+const typography = `whitespace-nowrap ${headerVariants({ size: "sm" })} font-medium`;
 const block = "inline-flex items-center justify-center rounded-md px-1 py-0.5";
 const border = "border border-solid";
 const focus =

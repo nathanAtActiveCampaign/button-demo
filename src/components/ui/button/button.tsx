@@ -3,13 +3,14 @@ import { Slot } from "@radix-ui/react-slot";
 import { cva, type VariantProps } from "class-variance-authority";
 
 import { cn } from "@/lib/utils";
+import { headerVariants, textVariants } from "../typography";
 
 // TODO - look tailwind reset stuff
 // TODO - loading indicator
 
 // Shared
-const typography = "whitespace-nowrap text-sm font-medium font-sans";
-const block = "inline-flex items-center justify-center rounded-md ";
+const typography = `whitespace-nowrap ${textVariants()} font-semibold`;
+const block = "inline-flex items-center justify-center rounded-sm";
 const focus =
   "ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--acBlue-500)] focus-visible:ring-offset-2";
 const disabled = "disabled:opacity-35 disabled:cursor-not-allowed"; // TODO: no pointer events? //  "disabled:pointer-events-none"
@@ -50,8 +51,11 @@ const ghostDestructive = `
 `;
 
 // Size
-const sm = "h-7 px-2 py-1";
-const md = "h-9 px-3 py-2"; // do we need pad?
+const sm = "h-7.5 px-2 py-1";
+const md = "h-9.5 px-3 py-2"; // do we need pad?
+
+const foo = headerVariants({ size: "sm" });
+console.log("foo styles", foo);
 
 const buttonVariants = cva([block, typography, focus, disabled, misc], {
   variants: {
