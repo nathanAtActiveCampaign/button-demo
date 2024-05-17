@@ -8,7 +8,7 @@ import { cn } from "@/lib/utils";
 // TODO - loading indicator
 
 // Shared
-const typography = "whitespace-nowrap text-sm font-medium";
+const typography = "whitespace-nowrap text-sm font-medium font-sans";
 const block = "inline-flex items-center justify-center rounded-md ";
 const focus =
   "ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--acBlue-500)] focus-visible:ring-offset-2";
