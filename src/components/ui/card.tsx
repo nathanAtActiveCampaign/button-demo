@@ -100,9 +100,14 @@ const cardVariants = cva([block, border, typography, focus, disabled, misc], {
       magenta,
       lavender,
     },
+    border: {
+      border: "border-solid",
+      "no-border": "border-none",
+    },
   },
   defaultVariants: {
     flavor: "ac-blue",
+    border: "border",
   },
 });
 
@@ -131,10 +136,10 @@ export interface Card
     VariantProps<typeof cardVariants> {}
 
 const Card = React.forwardRef<HTMLButtonElement, Card>(
-  ({ className, flavor, ...props }, ref) => {
+  ({ className, flavor, border, ...props }, ref) => {
     return (
       <button
-        className={cn(cardVariants({ flavor, className }))}
+        className={cn(cardVariants({ flavor, border, className }))}
         ref={ref}
         {...props}
       >
