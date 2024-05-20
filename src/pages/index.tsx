@@ -8,6 +8,7 @@ import {
 } from "@/figma/util-color";
 import { Chip, flavors } from "@/components/ui/chip";
 import { Header, Text, headerVariants } from "@/components/ui/typography";
+import { Card } from "@/components/ui/card";
 
 // tokens
 // round rgba
@@ -62,6 +63,13 @@ export default function Home() {
         <Header size="xl">
           HEADER: the quick fox jumped over the lazy dog.
         </Header>
+        <div className="flex flex-row flex-wrap gap-3">
+          {flavors.map((x, i) => (
+            <Card key={i} flavor={x}>
+              Chip
+            </Card>
+          ))}
+        </div>
         <div className="flex flex-row gap-3">
           {buttonVariants.map((x, i) => (
             <Button key={i} variant={x}>

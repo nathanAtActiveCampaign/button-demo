@@ -3,11 +3,11 @@ import { Slot } from "@radix-ui/react-slot";
 import { cva, type VariantProps } from "class-variance-authority";
 
 import { cn } from "@/lib/utils";
-import { headerVariants } from "./typography";
+import { Header, headerVariants, Text } from "./typography";
 
 // Shared
-const typography = `whitespace-nowrap ${headerVariants({ size: "sm" })} font-medium`;
-const block = "inline-flex items-center justify-center rounded-md px-1 py-0.5";
+const typography = `whitespace-nowrap`;
+const block = "flex flex-col items-start rounded-lg p-4";
 const border = "border border-solid";
 const focus =
   "ring-offset-background focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-offset-1 focus-visible:ring-[var(--acBlue-700)]";
@@ -15,124 +15,77 @@ const disabled =
   "disabled:opacity-50 disabled:pointer-events-none disabled:cursor-not-allowed";
 const misc = "transition-colors";
 
-type flavors =
-  | "midnight"
-  | "dusk"
-  | "moss"
-  | "midday"
-  | "dawn"
-  | "strawberry"
-  | "maroon"
-  | "magenta"
-  | "lavender"
-  | "ac-blue";
-
-export const flavors: flavors[] = [
-  "ac-blue",
-  "midnight",
-  "dusk",
-  "moss",
-  "midday",
-  "dawn",
-  "strawberry",
-  "maroon",
-  "magenta",
-  "lavender",
-];
-
-function generateFlavorStyles(flavor: flavors) {
-  return `
-  bg-[var(--${flavor}-100)]
-  text-[var(--${flavor}-800)]
-  border-[var(--${flavor}-500)]
-  hover:bg-[var(--${flavor}-300)]
-  hover:text-[var(--${flavor}-1000)]
-`;
-}
-
-const acBlueGen = generateFlavorStyles("ac-blue"); // doesnt work
-
 const acBlue = `
   bg-[var(--acBlue-100)]
-  text-[var(--acBlue-800)]
+  text-[var(--acBlue-1000)]
   border-[var(--acBlue-500)]
   hover:bg-[var(--acBlue-300)]
-  hover:text-[var(--acBlue-1000)]
 `;
 
 const midnight = `
   bg-[var(--midnight-100)]
-  text-[var(--midnight-800)]
+  text-[var(--midnight-1000)]
   border-[var(--midnight-500)]
   hover:bg-[var(--midnight-300)]
-  hover:text-[var(--midnight-1000)]
 `;
 
 const dusk = `
   bg-[var(--dusk-100)]
-  text-[var(--dusk-800)]
+  text-[var(--dusk-1000)]
   border-[var(--dusk-500)]
   hover:bg-[var(--dusk-300)]
-  hover:text-[var(--dusk-1000)]
 `;
 
 const moss = `
-  bg-[var(--strawberry-100)]
-  text-[var(--strawberry-800)]
-  border-[var(--strawberry-500)]
-  hover:bg-[var(--strawberry-300)]
-  hover:text-[var(--strawberry-1000)]
+  bg-[var(--moss-100)]
+  text-[var(--moss-1000)]
+  border-[var(--moss-500)]
+  hover:bg-[var(--moss-300)]
 `;
 
 const midday = `
   bg-[var(--midday-100)]
-  text-[var(--midday-800)]
+  text-[var(--midday-1000)]
   border-[var(--midday-500)]
   hover:bg-[var(--midday-300)]
-  hover:text-[var(--midday-1000)]
 `;
 
 const dawn = `
   bg-[var(--dawn-100)]
-  text-[var(--dawn-800)]
+  text-[var(--dawn-1000)]
   border-[var(--dawn-500)]
   hover:bg-[var(--dawn-300)]
-  hover:text-[var(--dawn-1000)]
 `;
 
 const strawberry = `
   bg-[var(--strawberry-100)]
-  text-[var(--strawberry-800)]
+  text-[var(--strawberry-1000)]
   border-[var(--strawberry-500)]
   hover:bg-[var(--strawberry-300)]
-  hover:text-[var(--strawberry-1000)]
 `;
 
 const maroon = `
   bg-[var(--maroon-100)]
-  text-[var(--maroon-800)]
+  text-[var(--maroon-1000)]
   border-[var(--maroon-500)]
   hover:bg-[var(--maroon-300)]
-  hover:text-[var(--maroon-1000)]
 `;
 
 const magenta = `
   bg-[var(--magenta-100)]
-  text-[var(--magenta-800)]
+  text-[var(--magenta-1000)]
   border-[var(--magenta-500)]
   hover:bg-[var(--magenta-300)]
-  hover:text-[var(--magenta-1000)]
 `;
 
 const lavender = `
   bg-[var(--lavender-100)]
-  text-[var(--lavender-800)]
+  text-[var(--lavender-1000)]
   border-[var(--lavender-500)]
   hover:bg-[var(--lavender-300)]
-  hover:text-[var(--lavender-1000)]
 `;
 
-const chipVariants = cva([block, border, typography, focus, disabled, misc], {
+const cardVariants = cva([block, border, typography, focus, disabled, misc], {
   variants: {
     /** this is an annotatino */
     flavor: {
@@ -153,22 +106,52 @@ const chipVariants = cva([block, border, typography, focus, disabled, misc], {
   },
 });
 
-export interface ChipProps
-  extends React.ButtonHTMLAttributes<HTMLButtonElement>,
-    VariantProps<typeof chipVariants> {}
+const cardSupportiveVariants = cva([], {
+  variants: {
+    flavor: {
+      "ac-blue": "text-[var(--acBlue-800)]",
+      midnight: "text-[var(--midnight-800)]",
+      dusk: "text-[var(--dusk-800)]",
+      moss: "text-[var(--moss-800)]",
+      midday: "text-[var(--midday-800)]",
+      dawn: "text-[var(--dawn-800)]",
+      strawberry: "text-[var(--strawberry-800)]",
+      maroon: "text-[var(--maroon-800)]",
+      magenta: "text-[var(--magenta-800)]",
+      lavender: "text-[var(--lavender-800)]",
+    },
+  },
+  defaultVariants: {
+    flavor: "midnight",
+  },
+});
 
-const Chip = React.forwardRef<HTMLButtonElement, ChipProps>(
+export interface Card
+  extends React.ButtonHTMLAttributes<HTMLButtonElement>,
+    VariantProps<typeof cardVariants> {}
+
+const Card = React.forwardRef<HTMLButtonElement, Card>(
   ({ className, flavor, ...props }, ref) => {
-    const foo = true;
     return (
       <button
-        className={cn(chipVariants({ flavor, className }))}
+        className={cn(cardVariants({ flavor, className }))}
         ref={ref}
         {...props}
-      />
+      >
+        <Text className={cn(cardSupportiveVariants({ flavor }), "mb-3")}>
+          Eyebrow
+        </Text>
+        <Header size="lg">This is a heading</Header>
+        <Text className={cardSupportiveVariants({ flavor })}>
+          This is a supporting description
+        </Text>
+        <Text className="text-[var(--acBlue-700)] font-semibold mt-8">
+          This is a link ➡
+        </Text>
+      </button>
     );
   }
 );
-Chip.displayName = "Chip";
+Card.displayName = "Card";
 
-export { Chip, chipVariants };
+export { Card, cardVariants };
