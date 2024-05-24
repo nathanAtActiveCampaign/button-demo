@@ -8,7 +8,7 @@ const nextConfig = {
 // export default nextConfig;
 const withNextra = nextra({
   theme: "nextra-theme-docs",
-  themeConfig: "./theme.config.jsx",
+  themeConfig: "./theme.config.tsx",
 });
 
 const config = withNextra(nextConfig);
