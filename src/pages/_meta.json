@@ -1,0 +1,30 @@
+{
+  "index": "Introduction",
+  "about": "About",
+  "tokens": "Tokens",
+  "components": "Components",
+  "patterns": "Patterns",
+  "docs": {
+    "title": "Documentation",
+    "type": "page"
+  },
+  "storybook": {
+    "title": "Storybook ↗",
+    "type": "page",
+    "href": "https://storybook.activecampaign.design/",
+    "newWindow": true
+  },
+  "repo": {
+    "title": "Repo ↗",
+    "type": "page",
+    "href": "https://gitlab.devops.app-us1.com/front-end/camp",
+    "newWindow": true
+  },
+  "contact": {
+    "title": "Contact ↗",
+    "type": "page",
+    "href": "https://activecampaign.slack.com/archives/CHECN3SG1",
+    "newWindow": true
+  },
+  "wip": "✨ Camp 2.0 🚀"
+}
