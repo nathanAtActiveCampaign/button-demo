@@ -1,5 +1,5 @@
 const config = {
-  logo: <span>My Nextra Documentation</span>,
+  logo: <span>activecampaign.design</span>,
   project: {
     link: "https://github.com/foo/bar",
   },
