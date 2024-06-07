@@ -1,11 +1,197 @@
+import { ComponentPageLinkBlock } from '@/components/docs/component-page-link-block'
+import {StorybookIFrame} from '../../components/storybook'
+
+
 # Accordion
 
 Accordions allow the user to expand and collapse content. They put the user in control of what to read and what to ignore.
 
+
 ## Live Demo
 
-import {StorybookIFrame} from '../../components/storybook'
+{/* <StorybookIFrame storyId="components-accordion" /> */}
 
-<StorybookIFrame storyId="components-accordion" />
+## Resources
 
+<ComponentPageLinkBlock
+  isStack={false}
+  pkg='accordion'
+  story='https://storybook.activecampaign.design/?path=/story/components-accordion--example'
+  figma='https://www.figma.com/file/pOCu0qKyZ80SB2HTdqJfOu/%F0%9F%8F%95%EF%B8%8F-Camp-Toolkit?node-id=0%3A1990&t=w7bNr1sBe3yWzyyP-1'
+/>
+
+## Usage
+
+### Install
+
+```bash copy
+yarn add @activecampaign/camp-components-accordion
+```
+
+## Variations
+
+### Default accordion
+
+Use the default accordion wherever possible to expand and collapse content. 
+
+```tsx copy
+import Accordion from '@activecampaign/camp-components-accordion';
+
+<Accordion
+  title="Accordion Title Text"
+>
+  <Accordion.Item
+    title="Example Title 1, Plain text"
+    panel="Hi i'm a panel here. Pass anything you want in here!"
+  />
+  <Accordion.Item
+    flush
+    title={() => <div>Example Title 2, Flush</div>}
+    panel={() => (
+      <div>a panel here, could be a component, notice there is no panel padding</div>
+    )}
+  />
+  <Accordion.Item
+    title={() => <div>Example Title 3, Component</div>}
+    panel={'a panel here, could be a component'}
+  />
+  <Accordion.Item
+    title={() => 'Example Title 4, Do not persistent input data'}
+    panel={getPanelWithInput}
+  />
+  <Accordion.Item
+    persistPanelContent
+    title={() => 'Example Title 5, Persistent input data'}
+    panel={getPanelWithInput}
+  />
+</Accordion>
+
+function getPanelWithInput() {
+  return (
+    <label>
+      Edit this field <input type="text" />
+      <br />
+      Then close and re-open this panel to see your value
+    </label>
+  );
+}
+```
+
+#### Example
+
+The default accordion is used today throughout the platform on pages such as the Contact Details page. It's also used on other Details pages, such as Accounts and Deals.
+
+![Example](https://www.activecampaign.design/uploads/Ci5SIiiS8xgp_ASsPl-P-w.png)
+
+### Side panel accordion
+
+The side panel accordion is considered `appearance=aside` in development. It is contained within a right-hand sidebar. While the sidebar can vary in width, the side panel accordion always fills the width of the side panel. 
+
+```tsx copy
+import Accordion from '@activecampaign/camp-components-accordion';
+
+<Accordion
+  appearance="aside"
+  title="Accordion Title Text"
+>
+  <Accordion.Item
+    title="Example Title 1, Plain text"
+    panel="Hi i'm a panel here. Pass anything you want in here!"
+  />
+  <Accordion.Item
+    flush
+    title={() => <div>Example Title 2, Flush</div>}
+    panel={() => (
+      <div>a panel here, could be a component, notice there is no panel padding</div>
+    )}
+  />
+  <Accordion.Item
+    title={() => <div>Example Title 3, Component</div>}
+    panel={'a panel here, could be a component'}
+  />
+  <Accordion.Item
+    title={() => 'Example Title 4, Do not persistent input data'}
+    panel={getPanelWithInput}
+  />
+  <Accordion.Item
+    persistPanelContent
+    title={() => 'Example Title 5, Persistent input data'}
+    panel={getPanelWithInput}
+  />
+</Accordion>
+
+function getPanelWithInput() {
+  return (
+    <label>
+      Edit this field <input type="text" />
+      <br />
+      Then close and re-open this panel to see your value
+    </label>
+  );
+}
+```
+
+#### Example
+
+![Example](https://www.activecampaign.design/uploads/ZfQnOOkfVitf4EI6J01R_g.png)
+
+### Floating accordion
+
+The floating accordion is reserved for when space is limited and is considered borderless=true in development. 
+
+```tsx copy
+import Accordion from '@activecampaign/camp-components-accordion';
+
+<Accordion
+  borderless
+  title="Accordion Title Text"
+>
+  <Accordion.Item
+    title="Example Title 1, Plain text"
+    panel="Hi i'm a panel here. Pass anything you want in here!"
+  />
+  <Accordion.Item
+    flush
+    title={() => <div>Example Title 2, Flush</div>}
+    panel={() => (
+      <div>a panel here, could be a component, notice there is no panel padding</div>
+    )}
+  />
+  <Accordion.Item
+    title={() => <div>Example Title 3, Component</div>}
+    panel={'a panel here, could be a component'}
+  />
+  <Accordion.Item
+    title={() => 'Example Title 4, Do not persistent input data'}
+    panel={getPanelWithInput}
+  />
+  <Accordion.Item
+    persistPanelContent
+    title={() => 'Example Title 5, Persistent input data'}
+    panel={getPanelWithInput}
+  />
+</Accordion>
+
+function getPanelWithInput() {
+  return (
+    <label>
+      Edit this field <input type="text" />
+      <br />
+      Then close and re-open this panel to see your value
+    </label>
+  );
+}
+```
+
+#### Example
+
+![Example](https://www.activecampaign.design/uploads/tlj9gXqwo2ZpoeKcNiAOVQ.png)
+
+### Accessibility
+
+#### Keyboard interactions
+
+* `tab` to switch between accordion items  
+* When the accordion item is in `focus`, `space` or `enter` to expand or collapse the accordion item
+* Interactive elements (such as a link or button) within an expanded accordion item integrate into the tab order by default
 
