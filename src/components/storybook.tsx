@@ -10,7 +10,6 @@ export const StorybookIFrame = ({
     <div
       style={{
         width: "100%",
-        background: "red",
       }}
     >
       <iframe
@@ -19,7 +18,7 @@ export const StorybookIFrame = ({
         style={{
           width: "100%",
           height: `${customHeight}px`,
-          background: "red",
+          // background: "red",
         }}
       />
       <div>{storySrc}</div>
