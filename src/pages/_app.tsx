@@ -1,14 +1,9 @@
 import "@/styles/figma-vars.css";
 import "@/styles/globals.css";
 import type { AppProps } from "next/app";
-import { IBM_Plex_Sans as FontSans, Inter } from "next/font/google";
+import { IBM_Plex_Sans as FontSans } from "next/font/google";
 
 import { cn } from "@/lib/utils";
-
-// const fontSans = FontSans({
-//   subsets: ["latin"],
-//   variable: "--font-sans",
-// });
 
 const fontSans = FontSans({
   weight: ["400", "600", "700"],

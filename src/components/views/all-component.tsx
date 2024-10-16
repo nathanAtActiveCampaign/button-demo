@@ -14,8 +14,6 @@ import { Card } from "@/components/ui/card";
 // round rgba
 // lowercase, concat names
 
-const inter = Inter({ subsets: ["latin"] });
-
 // layout styles (hover, focus) ✅
 // layout variants ✅
 // layout sizes ✅
@@ -28,7 +26,7 @@ const inter = Inter({ subsets: ["latin"] });
 // build chips
 // picture of chips
 
-export default function Home() {
+export default function AllComponents() {
   console.log("vars", figmaColorsFlatObject);
   console.log("css", figmaColorsCssVars);
 
@@ -44,9 +42,7 @@ export default function Home() {
   console.log("foo styles", foo);
 
   return (
-    <main
-      className={`flex min-h-screen flex-col items-center justify-between p-24 ${inter.className}`}
-    >
+    <>
       <div className="flex flex-col gap-3">
         {/* layout styles */}
         <Text size="sm">body: the quick fox jumped over the lazy dog.</Text>
@@ -144,6 +140,6 @@ export default function Home() {
           <Button>Disabled</Button>
         </div> */}
       </div>
-    </main>
+    </>
   );
 }
